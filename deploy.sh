@@ -1,1 +1,1 @@
-npx hardhat run ./scripts/v3_swap._deployjs --network test
+npx hardhat run ./scripts/v3_swap_deploy.js --network test
