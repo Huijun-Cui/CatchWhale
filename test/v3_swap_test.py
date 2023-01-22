@@ -29,6 +29,17 @@ eth_abi = json.loads(json.loads(requests.get(eth_abi_url).content.decode('utf-8'
 eth_c = w3.eth.contract(address = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', abi = eth_abi)
 print('name',eth_c.functions.name().call())
 
+build_param =  {}
+build_param['gas'] = 470000
+build_param['value'] = int(10 ** 18)
+build_param['from'] = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
+
+build_tx = trade.v2_contract.functions.deposit()).buildTransaction(build_param)
+signed_tx = trade.w3.eth.account.signTransaction(build_tx, private_key = trade.pr_key)
+trade.w3.eth.sendRawTransaction(signed_tx.rawTransaction)
+
+
+
 
 
 # eth_c = w3.eth.contract(address = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', abi = json.load(f)['abi'])
