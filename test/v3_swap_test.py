@@ -26,7 +26,7 @@ eth_abi_url = 'https://api.etherscan.io/api' + \
    '&address={}'.format('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2') + \
    '&apikey=ZMHGVZTA8V3JAZGHXQCBCPZZRPJFUFVMGK'
 
-eth_abi = json.loads(requests.get(eth_abi_url).content.decode('utf-8'))['result']
+eth_abi = json.loads(json.loads(requests.get(eth_abi_url).content.decode('utf-8'))['result'])
 print(eth_abi)
 import ipdb;ipdb.set_trace(context=30)
 print(eth_abi[0]['constant'])
