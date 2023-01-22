@@ -33,6 +33,7 @@ build_param =  {}
 build_param['gas'] = 470000
 build_param['value'] = int(10 ** 18)
 build_param['from'] = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
+build_param['none'] = w3.eth.getTransactionCount('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266')
 
 build_tx = eth_c.functions.deposit().buildTransaction(build_param)
 signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'])
