@@ -44,7 +44,7 @@ print(eth_c.functions.balanceOf('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266').ca
 
 nonce = w3.eth.getTransactionCount('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266')
 val = int(300 * 10 ** 18)
-
+print(nonce)
 build_tx = eth_c.functions.deposit().buildTransaction(buld_param(nonce = nonce,val = val))
 signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'])
 w3.eth.sendRawTransaction(signed_tx.rawTransaction)
@@ -57,6 +57,7 @@ print(eth_c.functions.balanceOf('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266').ca
 with open('../artifacts/contracts/v3_swap.sol/SwapExamples.json') as f:
     nonce += 1
     val = 0
+    print(nonce)
     eth_c.functions.approve(contract_address,int(2 ** 255) - 1).buildTransaction(buld_param(nonce = nonce,val = val))
     signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'])
     w3.eth.sendRawTransaction(signed_tx.rawTransaction)
@@ -64,6 +65,7 @@ with open('../artifacts/contracts/v3_swap.sol/SwapExamples.json') as f:
     v3_swap_c = w3.eth.contract(address = contract_address, abi = json.load(f)['abi'])
     nonce += 1
     val = 0
+    print(nonce)
     build_tx = v3_swap_c.functions.swapExactInputSingle(int(10 * 10 ** 18),\
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',\
             '0x6B175474E89094C44Da98b954EedeAC495271d0F').buildTransaction(buld_param(nonce = nonce,val = val))
