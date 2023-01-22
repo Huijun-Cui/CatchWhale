@@ -29,7 +29,7 @@ eth_abi = json.loads(json.loads(requests.get(eth_abi_url).content.decode('utf-8'
 eth_c = w3.eth.contract(address = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', abi = eth_abi)
 print('name',eth_c.functions.name().call())
 
-print(w3.Eth.get_balance('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'))
+print(w3.eth.get_balance('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'))
 
 build_param =  {}
 build_param['gas'] = 470000
