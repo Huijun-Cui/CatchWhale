@@ -41,7 +41,7 @@ build_param['nonce'] = w3.eth.getTransactionCount('0xf39Fd6e51aad88F6F4ce6aB8827
 build_tx = eth_c.functions.deposit().buildTransaction(build_param)
 signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'])
 w3.eth.sendRawTransaction(signed_tx.rawTransaction)
-
+build_param['nonce'] += 1
 
 print(w3.eth.get_balance('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266') / (10 ** 18))
 print(eth_c.functions.balanceOf('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266').call() / (10 ** 18))
@@ -50,20 +50,15 @@ print(eth_c.functions.balanceOf('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266').ca
 
 with open('../artifacts/contracts/v3_swap.sol/SwapExamples.json') as f:
 
-    build_param =  {}
-    build_param['gas'] = 470000
-    build_param['from'] = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
-    build_param['nonce'] = w3.eth.getTransactionCount('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266')
+    
     
     eth_c.functions.approve(contract_address,int(2 ** 255) - 1).buildTransaction(build_param)
     signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'])
     w3.eth.sendRawTransaction(signed_tx.rawTransaction)
+    build_param['nonce'] += 1
 
 
-    build_param =  {}
-    build_param['gas'] = 470000
-    build_param['from'] = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
-    build_param['nonce'] = w3.eth.getTransactionCount('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266')
+    
 
     v3_swap_c = w3.eth.contract(address = contract_address, abi = json.load(f)['abi'])
     build_tx = v3_swap_c.functions.swapExactInputSingle(int(10 * 10 ** 18),\
@@ -71,3 +66,4 @@ with open('../artifacts/contracts/v3_swap.sol/SwapExamples.json') as f:
             '0x6B175474E89094C44Da98b954EedeAC495271d0F').buildTransaction(build_param)
     signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'])
     w3.eth.sendRawTransaction(signed_tx.rawTransaction)
+    build_param['nonce'] += 1
