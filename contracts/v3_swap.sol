@@ -2,8 +2,8 @@
 pragma solidity =0.7.6;
 pragma abicoder v2;
 
-// import 'https://github.com/Huijun-Cui/CatchWhale/blob/main/examples/TransferHelper.sol';
-// import 'https://github.com/Huijun-Cui/CatchWhale/blob/main/examples/ISwapRouter.sol';
+import 'https://github.com/Huijun-Cui/CatchWhale/blob/main/examples/TransferHelper.sol';
+import 'https://github.com/Huijun-Cui/CatchWhale/blob/main/examples/ISwapRouter.sol';
 
 import '@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol';
 import '@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol';
