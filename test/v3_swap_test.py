@@ -58,7 +58,7 @@ with open('../artifacts/contracts/v3_swap.sol/SwapExamples.json') as f:
     nonce += 1
     val = 0
     print(nonce)
-    eth_c.functions.approve(contract_address,int(2 ** 255) - 1).buildTransaction(buld_param(nonce = nonce,val = val))
+    build_tx = eth_c.functions.approve(contract_address,int(2 ** 255) - 1).buildTransaction(buld_param(nonce = nonce,val = val))
     signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'])
     w3.eth.sendRawTransaction(signed_tx.rawTransaction)
 
