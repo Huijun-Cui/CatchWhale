@@ -40,6 +40,7 @@ build_param['nonce'] = w3.eth.getTransactionCount('0xf39Fd6e51aad88F6F4ce6aB8827
 
 build_tx = eth_c.functions.deposit().buildTransaction(build_param)
 signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'])
+print(build_param['nonce'])
 w3.eth.sendRawTransaction(signed_tx.rawTransaction)
 build_param['nonce'] += 1
 
@@ -54,6 +55,7 @@ with open('../artifacts/contracts/v3_swap.sol/SwapExamples.json') as f:
     build_param['value'] = 0
     eth_c.functions.approve(contract_address,int(2 ** 255) - 1).buildTransaction(build_param)
     signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'])
+    print(build_param['nonce'])
     w3.eth.sendRawTransaction(signed_tx.rawTransaction)
     build_param['nonce'] += 1
 
@@ -65,5 +67,6 @@ with open('../artifacts/contracts/v3_swap.sol/SwapExamples.json') as f:
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',\
             '0x6B175474E89094C44Da98b954EedeAC495271d0F').buildTransaction(build_param)
     signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'])
+    print(build_param['nonce'])
     w3.eth.sendRawTransaction(signed_tx.rawTransaction)
     build_param['nonce'] += 1
