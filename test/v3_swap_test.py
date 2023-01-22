@@ -42,7 +42,7 @@ signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39F
 w3.eth.sendRawTransaction(signed_tx.rawTransaction)
 
 
-print(w3.Eth.get_balance('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'))
+print(w3.eth.get_balance('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'))
 
 
 
