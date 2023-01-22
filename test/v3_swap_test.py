@@ -51,7 +51,7 @@ print(eth_c.functions.balanceOf('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266').ca
 with open('../artifacts/contracts/v3_swap.sol/SwapExamples.json') as f:
 
     
-    
+    build_param['value'] = 0
     eth_c.functions.approve(contract_address,int(2 ** 255) - 1).buildTransaction(build_param)
     signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'])
     w3.eth.sendRawTransaction(signed_tx.rawTransaction)
@@ -59,7 +59,7 @@ with open('../artifacts/contracts/v3_swap.sol/SwapExamples.json') as f:
 
 
     
-
+    build_param['value'] = 0
     v3_swap_c = w3.eth.contract(address = contract_address, abi = json.load(f)['abi'])
     build_tx = v3_swap_c.functions.swapExactInputSingle(int(10 * 10 ** 18),\
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',\
