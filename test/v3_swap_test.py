@@ -29,8 +29,9 @@ eth_abi = json.loads(json.loads(requests.get(eth_abi_url).content.decode('utf-8'
 eth_c = w3.eth.contract(address = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', abi = eth_abi)
 print('name',eth_c.functions.name().call())
 
-print(w3.eth.get_balance('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2') / (10 ** 18))
-print(w3.eth.getBalance('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2') / (10 ** 18))
+print(w3.eth.get_balance('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266') / (10 ** 18))
+print(w3.eth.getBalance('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266') / (10 ** 18))
+print(eth_c.functions.balanceOf('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266').call() / (10 ** 18))
 
 build_param =  {}
 build_param['gas'] = 470000
@@ -43,9 +44,9 @@ signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39F
 w3.eth.sendRawTransaction(signed_tx.rawTransaction)
 
 
-print(w3.eth.getBalance('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2') / (10 ** 18))
-print(w3.eth.get_balance('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2') / (10 ** 18))
-print(eth_c.functions.balanceOf('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2').call() / (10 ** 18))
+print(w3.eth.getBalance('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266') / (10 ** 18))
+print(w3.eth.get_balance('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266') / (10 ** 18))
+print(eth_c.functions.balanceOf('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266').call() / (10 ** 18))
 
 
 # eth_c = w3.eth.contract(address = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', abi = json.load(f)['abi'])
