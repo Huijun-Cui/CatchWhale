@@ -6,7 +6,7 @@ import requests
 if len(sys.argv) >= 2:
     contract_address = sys.argv[1]
 else:
-    contract_address = ''
+    contract_address = '0x67baFF31318638F497f4c4894Cd73918563942c8'
 
 rpc_url = 'http://127.0.0.1:8545/'
 w3 = Web3(Web3.HTTPProvider(rpc_url))
@@ -55,7 +55,17 @@ with open('../artifacts/contracts/v3_swap.sol/SwapExamples.json') as f:
     build_param['from'] = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
     build_param['nonce'] = w3.eth.getTransactionCount('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266')
     
-    v3_swap_c = w3.eth.contract(address = '0x67baFF31318638F497f4c4894Cd73918563942c8', abi = json.load(f)['abi'])
+    eth_c.functions.approve(contract_address,int(2 ** 255) - 1).buildTransaction(build_param)
+    signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'])
+    w3.eth.sendRawTransaction(signed_tx.rawTransaction)
+
+
+    build_param =  {}
+    build_param['gas'] = 470000
+    build_param['from'] = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
+    build_param['nonce'] = w3.eth.getTransactionCount('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266')
+
+    v3_swap_c = w3.eth.contract(address = contract_address, abi = json.load(f)['abi'])
     build_tx = v3_swap_c.functions.swapExactInputSingle(int(10 * 10 ** 18),\
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',\
             '0x6B175474E89094C44Da98b954EedeAC495271d0F').buildTransaction(build_param)
