@@ -50,5 +50,5 @@ print(eth_c.functions.balanceOf('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266').ca
 
 with open('../artifacts/contracts/v3_swap.sol/SwapExamples.json') as f:
     
-    v3_swap_c = w3.eth.contract(address = contract_address, abi = json.load(f)['abi'])
+    v3_swap_c = w3.eth.contract(address = '0x67baFF31318638F497f4c4894Cd73918563942c8', abi = json.load(f)['abi'])
     print(v3_swap_c.functions.DAI().call())
