@@ -28,6 +28,8 @@ eth_abi_url = 'https://api.etherscan.io/api' + \
 
 eth_abi = json.loads(requests.get(eth_abi_url).content.decode('utf-8'))['result']
 print(eth_abi)
+print(eth_abi[0]['constant'])
+print(eth_abi[0]['constant'] == True)
 
 
 
