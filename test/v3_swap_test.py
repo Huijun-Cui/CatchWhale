@@ -20,6 +20,16 @@ users = {
     '0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc':'0x8b3a350cf5c34c9194ca85829a2df0ec3153be0318b5e2d3348e872092edffba'
 }
 
+def buld_param(nonce,val = 0,gas = 470000,_from = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'):
+    _param = {
+        'gas':gas,
+        'value':val,
+        'from':_from,
+        'nonce':nonce
+    }
+    return _param
+
+
 eth_abi_url = 'https://api.etherscan.io/api' + \
    '?module=contract' + \
    '&action=getabi' + \
@@ -32,17 +42,12 @@ print('name',eth_c.functions.name().call())
 print(w3.eth.get_balance('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266') / (10 ** 18))
 print(eth_c.functions.balanceOf('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266').call() / (10 ** 18))
 
-build_param =  {}
-build_param['gas'] = 470000
-build_param['value'] = int(300 * 10 ** 18)
-build_param['from'] = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
-build_param['nonce'] = w3.eth.getTransactionCount('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266')
+nonce = w3.eth.getTransactionCount('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266')
+val = int(300 * 10 ** 18)
 
-build_tx = eth_c.functions.deposit().buildTransaction(build_param)
+build_tx = eth_c.functions.deposit().buildTransaction(buld_param(nonce = nonce,val = val))
 signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'])
-print(build_param['nonce'])
 w3.eth.sendRawTransaction(signed_tx.rawTransaction)
-build_param['nonce'] += 1
 
 print(w3.eth.get_balance('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266') / (10 ** 18))
 print(eth_c.functions.balanceOf('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266').call() / (10 ** 18))
@@ -50,23 +55,17 @@ print(eth_c.functions.balanceOf('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266').ca
 
 
 with open('../artifacts/contracts/v3_swap.sol/SwapExamples.json') as f:
-
-    
-    build_param['value'] = 0
-    eth_c.functions.approve(contract_address,int(2 ** 255) - 1).buildTransaction(build_param)
+    nonce += 1
+    val = 0
+    eth_c.functions.approve(contract_address,int(2 ** 255) - 1).buildTransaction(buld_param(nonce = nonce,val = val))
     signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'])
-    print(build_param['nonce'])
     w3.eth.sendRawTransaction(signed_tx.rawTransaction)
-    build_param['nonce'] += 1
 
-
-    
-    build_param['value'] = 0
     v3_swap_c = w3.eth.contract(address = contract_address, abi = json.load(f)['abi'])
+    nonce += 1
+    val = 0
     build_tx = v3_swap_c.functions.swapExactInputSingle(int(10 * 10 ** 18),\
         '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',\
-            '0x6B175474E89094C44Da98b954EedeAC495271d0F').buildTransaction(build_param)
+            '0x6B175474E89094C44Da98b954EedeAC495271d0F').buildTransaction(buld_param(nonce = nonce,val = val))
     signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'])
-    print(build_param['nonce'])
     w3.eth.sendRawTransaction(signed_tx.rawTransaction)
-    build_param['nonce'] += 1
