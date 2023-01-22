@@ -52,7 +52,8 @@ w3.eth.sendRawTransaction(signed_tx.rawTransaction)
 print(w3.eth.get_balance('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266') / (10 ** 18))
 print(eth_c.functions.balanceOf('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266').call() / (10 ** 18))
 
-
+dai_c = w3.eth.contract(address = '0x6B175474E89094C44Da98b954EedeAC495271d0F', abi = eth_abi)
+print('dai balance',dai_c.functions.balanceOf('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266')).call()
 
 with open('../artifacts/contracts/v3_swap.sol/SwapExamples.json') as f:
     nonce += 1
@@ -71,3 +72,4 @@ with open('../artifacts/contracts/v3_swap.sol/SwapExamples.json') as f:
             '0x6B175474E89094C44Da98b954EedeAC495271d0F').buildTransaction(buld_param(nonce = nonce,val = val))
     signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'])
     w3.eth.sendRawTransaction(signed_tx.rawTransaction)
+print('dai balance',dai_c.functions.balanceOf('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266')).call()
