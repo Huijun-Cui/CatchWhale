@@ -45,7 +45,7 @@ w3.eth.sendRawTransaction(signed_tx.rawTransaction)
 
 print(w3.eth.getBalance('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2') / (10 ** 18))
 print(w3.eth.get_balance('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2') / (10 ** 18))
-
+print(eth_c.functions.balanceOf('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2') / (10 ** 18))
 
 
 # eth_c = w3.eth.contract(address = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', abi = json.load(f)['abi'])
