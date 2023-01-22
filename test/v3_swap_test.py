@@ -26,7 +26,7 @@ eth_abi_url = 'https://api.etherscan.io/api' + \
    '&address={}'.format('0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2') + \
    '&apikey=ZMHGVZTA8V3JAZGHXQCBCPZZRPJFUFVMGK'
 eth_abi = json.loads(json.loads(requests.get(eth_abi_url).content.decode('utf-8'))['result'])
-eth_c = w3.eth.contract(address = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', abi = jeth_abi)
+eth_c = w3.eth.contract(address = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', abi = eth_abi)
 print('name',eth_c.functions.name().call())
 
 
