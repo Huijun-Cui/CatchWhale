@@ -48,7 +48,7 @@ print(eth_c.functions.balanceOf('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266').ca
 
 
 
-with open('/home/ubuntu/Projects/CatchWhale/artifacts/contracts/v3_swap.sol') as f:
+with open('~/Projects/CatchWhale/artifacts/contracts/v3_swap.sol') as f:
     
     v3_swap_c = w3.eth.contract(address = contract_address, abi = json.load(f)['abi'])
     print(v3_swap_c.functions.DAI().call())
