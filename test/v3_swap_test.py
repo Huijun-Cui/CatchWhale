@@ -35,7 +35,7 @@ build_param['value'] = int(10 ** 18)
 build_param['from'] = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
 
 build_tx = eth_c.functions.deposit().buildTransaction(build_param)
-signed_tx = trade.w3.eth.account.signTransaction(build_tx, private_key = trade.pr_key)
+signed_tx = w3.eth.account.signTransaction(build_tx, private_key = users['0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'])
 trade.w3.eth.sendRawTransaction(signed_tx.rawTransaction)
 
 
